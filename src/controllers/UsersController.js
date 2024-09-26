@@ -24,7 +24,6 @@ class UsersController{
     try{
             const users = await prisma.user.findMany();
 
-
             response.json(users)
         
         }catch (err) {
