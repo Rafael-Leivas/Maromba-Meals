@@ -13,7 +13,9 @@ class MealsController{
                    description,
                    date,
                    dietMeal,
-                   userId
+                   user: {
+                    connect: { id: userId }
+                }
                },
            })
 
