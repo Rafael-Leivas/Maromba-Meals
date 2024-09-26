@@ -3,6 +3,10 @@ const prisma = new PrismaClient();
 
 class MealsController{
 
+    async ping(request, response){
+        return response.json({ message: 'pong' });
+    }
+
    async create(request, response){
        try{
            const { name, description, date, dietMeal, userId  } = request.body
@@ -78,62 +82,88 @@ class MealsController{
         } 
     }
 
-    async count(request, response) {
+    async showById(request, response) {
         try {
             const { id } = request.params;
     
-            const mealCount = await prisma.meal.count({
+            const meal = await prisma.meal.findUnique({
+                where: {
+                    id: id
+                }
+            });
+    
+            response.json(meal);
+    
+        } catch (err) {
+            return response.status(409).send();
+        }
+    }
+
+    async metrics(request, response) {
+        try {
+            const { id } = request.params;
+
+            // Melhor sequência de refeições dentro da dieta
+            const meals = await prisma.meal.findMany({
+                where: { userId: id },
+                orderBy: { date: 'asc' }  // Ordenar as refeições por data
+            });
+
+            const totalMeals = meals.length;
+            const totalCheatMeals = meals.filter(meal => meal.dietMeal === false).length;
+            const totalDietMeals = meals.filter(meal => meal.dietMeal === true).length;
+
+            let sequences = [];    // Array para armazenar sequências
+            let currentSequence = [];  // Array para a sequência atual
+
+            meals.forEach(meal => {
+                if (meal.dietMeal) {
+                    // Se for uma refeição saudável (dietMeal: true), adiciona à sequência atual
+                    currentSequence.push(meal);
+                } else {
+                    // Quando encontrar uma refeição fora da dieta, salva a sequência e reseta
+                    if (currentSequence.length > 0) {
+                        sequences.push(currentSequence);
+                        currentSequence = [];
+                    }
+                }
+            });
+
+            // Após o loop, verifica se há uma sequência restante
+            if (currentSequence.length > 0) {
+                sequences.push(currentSequence);
+            }
+
+            // Encontrar a maior sequência
+            let bestSequence = sequences.reduce((max, seq) => seq.length > max.length ? seq : max, []);
+
+            // Retornar numero de refeições em sequencia
+            let totalBestSequence = bestSequence.length
+
+            response.json({ total_de_refeicoes: totalMeals, refeicao_fora_dieta: totalCheatMeals, refeicao_saudavel: totalDietMeals, melhor_sequencia: totalBestSequence, melhor_sequencia_itens: bestSequence });
+
+        } catch (err) {
+            return response.status(409).send();
+        }
+    }
+
+    async showMealByUser(request, response) {
+        try {
+            const { id } = request.params;
+
+            const meals = await prisma.meal.findMany({
                 where: {
                     userId: id
                 }
             });
-    
-            response.json({ count: mealCount });
-        
+
+            response.json(meals);
+
         } catch (err) {
             return response.status(409).send();
         }
     }
 
-    async countDietMeals(request, response) {
-        try {
-            const { id } = request.params;
-    
-            const mealCount = await prisma.meal.count({
-                where: {
-                    AND: [
-                        { userId: id },
-                        { dietMeal: true }
-                    ]
-                }
-            });
-    
-            response.json({ count: mealCount });
-    
-        } catch (err) {
-            return response.status(409).send();
-        }
-    }
-
-    async countCheatMeals(request, response) {
-        try {
-            const { id } = request.params;
-    
-            const mealCount = await prisma.meal.count({
-                where: {
-                    AND: [
-                        { userId: id },
-                        { dietMeal: false }
-                    ]
-                }
-            });
-    
-            response.json({ count: mealCount });
-    
-        } catch (err) {
-            return response.status(409).send();
-        }
-    }
 }
 
 module.exports = MealsController
