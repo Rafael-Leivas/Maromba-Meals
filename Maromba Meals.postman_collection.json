@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "b003b2fe-522d-44c8-9e86-6704b3d26775",
+		"name": "Maromba Meals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24719948",
+		"_collection_link": "https://red-water-986804.postman.co/workspace/First-API~cc5b3eb6-0452-4eea-bcc0-2be188cdede8/collection/25980005-b003b2fe-522d-44c8-9e86-6704b3d26775?action=share&source=collection_link&creator=24719948"
+	},
+	"item": [
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Cadastro de usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Rafa\",\r\n\t\"email\": \"rafa@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/users/show",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar usuário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lóóóchiii\",\r\n    \"email\": \"FefeLóLó@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/users/update/c7fa6452-edf3-46cb-8830-5e2b974adc97",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"update",
+								"c7fa6452-edf3-46cb-8830-5e2b974adc97"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/users/delete/40c4ee0a-a28b-43f4-aa20-2e050f02ffa1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"delete",
+								"40c4ee0a-a28b-43f4-aa20-2e050f02ffa1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meals",
+			"item": [
+				{
+					"name": "Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/meals/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar refeição",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Frnguinho delas\",\r\n  \"description\": \"Franguissimo de cria master bolado diario todo dia muito foda e gostoso esse frango de master blaster suoper mega hiper dopler jogador de frangolino.\",\r\n  \"date\": \"2024-09-25T12:00:00Z\",\r\n  \"dietMeal\": false,\r\n  \"userId\": \"b62c2fe2-4607-412c-858d-7377b24cfdbf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/meals/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Refeições",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/meals/show",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar  refeição",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"a9dde45f-49d5-4815-9303-bed423a562cf\",\r\n        \"name\": \"Strogonofizao\",\r\n        \"description\": \"Carde de boi uma delicia\",\r\n        \"date\": \"2024-09-25T12:00:00.000Z\",\r\n        \"dietMeal\": true,\r\n        \"userId\": \"1c7d2eda-31f5-4b87-82f6-e595f1afa193\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/meals/update/a9dde45f-49d5-4815-9303-bed423a562cf",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"update",
+								"a9dde45f-49d5-4815-9303-bed423a562cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir refeição",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/meals/delete/5decac4f-ff9c-4386-9bca-2851d4f12f9e",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"delete",
+								"5decac4f-ff9c-4386-9bca-2851d4f12f9e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar refeição única",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/meals/show-meals/2b3b9508-3589-4657-8276-ff66820a05e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"show-meals",
+								"2b3b9508-3589-4657-8276-ff66820a05e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Métricas de usuário",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/meals/user-metrics/b62c2fe2-4607-412c-858d-7377b24cfdbf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"user-metrics",
+								"b62c2fe2-4607-412c-858d-7377b24cfdbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar refeições de um usuário",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/meals/user-meals/b62c2fe2-4607-412c-858d-7377b24cfdbf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"meals",
+								"user-meals",
+								"b62c2fe2-4607-412c-858d-7377b24cfdbf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
